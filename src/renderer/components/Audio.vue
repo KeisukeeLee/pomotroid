@@ -8,7 +8,7 @@
     <audio
       id="audio-short-break"
       ref="audio-short-break"
-      :src="'./static/audio/mixkit-ding-notification-cut.mp3'"
+      :src="'./static/audio/zapsplat_multimedia_notification_bell_chime_ring_alert_006_41160.mp3'"
     ></audio>
     <audio
       id="audio-work"

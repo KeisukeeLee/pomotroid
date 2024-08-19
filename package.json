@@ -58,12 +58,15 @@
     "win": {
       "icon": "./build/icons/icon.ico",
       "target": [
-        "nsis",
-        "portable"
+        "nsis"
       ]
     },
     "nsis": {
-      "artifactName": "pomotroid-${version}-setup.${ext}"
+      "artifactName": "pomotroid-${version}-setup.${ext}",
+      "oneClick": false,
+      "allowToChangeInstallationDirectory": true,
+      "createDesktopShortcut": false,
+      "createStartMenuShortcut": true
     },
     "portable": {
       "artifactName": "pomotroid-${version}-portable.${ext}"
