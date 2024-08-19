@@ -50,8 +50,8 @@ export default {
       audioShortBreak: null,
       audioWork: null,
       audioReset: null,
-      audioSkip: null,
-      audioToggle: null
+      audioStart: null,
+      audioPause: null
     }
   },
 

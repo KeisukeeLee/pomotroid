@@ -334,6 +334,7 @@ export default {
     resetTimerAction() {
       EventBus.$emit('action-reset')
       this.resetTimer()
+      this.startTimer()
     }
   },
 
