@@ -3,22 +3,38 @@
     <audio
       id="audio-long-break"
       ref="audio-long-break"
-      :src="'./static/audio/alert-long-break.mp3'"
+      :src="'./static/audio/mixkit-happy-bells-notification-937.mp3'"
     ></audio>
     <audio
       id="audio-short-break"
       ref="audio-short-break"
-      :src="'./static/audio/alert-short-break.mp3'"
+      :src="'./static/audio/mixkit-ding-notification-cut.mp3'"
     ></audio>
     <audio
       id="audio-work"
       ref="audio-work"
-      :src="'./static/audio/alert-work.mp3'"
+      :src="'./static/audio/mixkit-bell-notification-933-cut.mp3'"
     ></audio>
     <audio
       id="audio-tick"
       ref="audio-tick"
       :src="'./static/audio/tick.mp3'"
+    ></audio>
+    <!-- new audios-->
+    <audio
+      id="audio-reset"
+      ref="audio-reset"
+      :src="'./static/audio/mixkit-magic-marimba-2820-cut.mp3'"
+    ></audio>
+    <audio
+      id="audio-start"
+      ref="audio-start"
+      :src="'./static/audio/mixkit-doorbell-tone-2864-cut.mp3'"
+    ></audio>
+    <audio
+      id="audio-pause"
+      ref="audio-pause"
+      :src="'./static/audio/mixkit-elevator-tone-2863.mp3'"
     ></audio>
   </div>
 </template>
@@ -32,7 +48,10 @@ export default {
       audioLongBreak: null,
       audioTick: null,
       audioShortBreak: null,
-      audioWork: null
+      audioWork: null,
+      audioReset: null,
+      audioSkip: null,
+      audioToggle: null
     }
   },
 
@@ -76,6 +95,21 @@ export default {
     EventBus.$on('ready-work', () => {
       this.$refs['audio-work'].volume = this.volume
       this.$refs['audio-work'].play()
+    })
+
+    EventBus.$on('action-reset', () => {
+      this.$refs['audio-reset'].volume = this.volume
+      this.$refs['audio-reset'].play()
+    })
+
+    EventBus.$on('action-start', () => {
+      this.$refs['audio-start'].volume = this.volume
+      this.$refs['audio-start'].play()
+    })
+
+    EventBus.$on('action-pause', () => {
+      this.$refs['audio-pause'].volume = this.volume
+      this.$refs['audio-pause'].play()
     })
   }
 }

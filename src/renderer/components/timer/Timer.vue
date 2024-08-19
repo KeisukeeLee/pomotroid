@@ -16,7 +16,7 @@
         <div
           class="Button"
           v-if="!timerStarted"
-          @click="startTimer"
+          @click="startTimerAction"
           :key="'start'"
         >
           <div class="Button-icon-wrapper">
@@ -43,7 +43,7 @@
         <div
           class="Button"
           v-if="timerStarted && !timerActive"
-          @click="resumeTimer"
+          @click="resumeTimerAction"
           :key="'resume'"
         >
           <div class="Button-icon-wrapper">
@@ -69,7 +69,7 @@
         <div
           class="Button"
           v-else-if="timerStarted && timerActive"
-          @click="pauseTimer"
+          @click="pauseTimerAction"
           :key="'pause'"
         >
           <div class="Button-icon-wrapper">
@@ -312,12 +312,28 @@ export default {
       this.timerActive = true
       this.timerStarted = true
     },
-    toggleTimer() {
+    toggleTimerAction() {
       if (this.timerActive) {
-        this.pauseTimer()
+        this.pauseTimerAction()
       } else {
-        this.startTimer()
+        this.startTimerAction()
       }
+    },
+    pauseTimerAction() {
+      EventBus.$emit('action-pause')
+      this.pauseTimer()
+    },
+    startTimerAction() {
+      EventBus.$emit('action-start')
+      this.startTimer()
+    },
+    resumeTimerAction() {
+      EventBus.$emit('action-start')
+      this.resumeTimer()
+    },
+    resetTimerAction() {
+      EventBus.$emit('action-reset')
+      this.resetTimer()
     }
   },
 
@@ -341,13 +357,13 @@ export default {
     })
 
     EventBus.$on('call-timer-reset', () => {
-      this.resetTimer()
+      this.resetTimerAction()
       logger.info(`${this.currentRoundDisplay} round reset`)
     })
 
     EventBus.$on('call-timer-toggle', () => {
       logger.info(`${this.currentRoundDisplay} toggle`)
-      this.toggleTimer()
+      this.toggleTimerAction()
     })
 
     EventBus.$on('call-timer-skip', () => {
